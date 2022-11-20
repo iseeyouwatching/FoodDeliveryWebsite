@@ -1,3 +1,3 @@
 $(function(){
-    $("#includedContent").load("/navbar/navbar.html");
+    $("#food-delivery-navbar").load("/navbar/navbar.html");
 });
