@@ -1,0 +1,13 @@
+.dish-picture {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media (max-width: 991px){
+    .dish-picture {
+        width: 70%;
+
+    }
+}
