@@ -5,6 +5,14 @@
     display: block;
 }
 
+.fa-star {
+    font-size: 15px
+}
+
+.checked {
+    color: orange;
+}
+
 @media (max-width: 991px){
     .dish-picture {
         width: 70%;
