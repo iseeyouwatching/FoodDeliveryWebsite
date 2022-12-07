@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Food delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="import" href="/navbar/navbar.html">
+    <link rel="import" href="/footer/footer.html">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="/downloadNavbarAndFooter.js"></script>
+  </head>
+    <body class="d-flex flex-column h-100">
+    <div id="food-delivery-navbar"></div>
+    <div id="content_container" class="p-3 container shadow">
+      <ul class="list-group mb-3">
+        <li class="list-group-item">
+          <div class="row p-2">
+            <div class="col-xs-12 col-sm-6 col-md-6 col mt-auto mb-auto">
+              В корзине есть блюда, можно оформить заказ
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col pe-1">
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-success">Оформить</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="h1 mb-3">Последние заказы</div>
+      <div class="container ps-0 pe-0">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row ">
+              <div class="col">
+                <div class="card-body align-items-center">
+                  <a href="#" class="link-dark"><strong>Заказ от 20.04.2022</strong></a>
+                  <p class="dish-price-order mb-1"><span>Статус заказа - </span>В обработке</p>
+                  <p class="amount-of-dish mb-0"><span>Доставлен: </span>20.04.2022 18:25</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="h-100 d-flex justify-content-end">
+                  <div class="h-100 d-flex align-items-center flex-column bd-highlight">
+                    <div class="w-100">
+                      <button class="w-100 btn btn-outline-success">Подтвердить доставку</button>
+                    </div>
+                    <div class="w-100 mt-auto bd-highlight">
+                      <span class="w-100 h-auto"><strong>Стоимость доставки: </strong><span> 785 руб.</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-light border-top" id="food-delivery-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
