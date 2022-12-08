@@ -1,4 +1,4 @@
-import URL from '../url.js'
+import URL from '../helpers/url.js'
 
 function changeNavbar(activePage) {
     $('#food-delivery-navbar').load('/navbar/navbar.html');

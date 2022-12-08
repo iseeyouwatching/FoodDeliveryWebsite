@@ -10,7 +10,6 @@ $(document).ready(function () {
 
 function loadDishMenu() {
     changeNavbar('dish')
-    console.log("test")
 }
 
 
