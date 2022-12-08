@@ -48,5 +48,5 @@ function sendData(data) {
 
 function errorLogIn() {
     $('.input-log-in').addClass('is-invalid')
-    $('.wrong-email-and-password').text('Неверный логин или пароль')
+    $('.wrong-email-and-password').text('Вы ввели неверные данные')
 }
