@@ -9,7 +9,7 @@ $(document).ready(function () {
 })
 
 function loadDishMenu() {
-    changeNavbar('dish')
+    changeNavbar()
 }
 
 

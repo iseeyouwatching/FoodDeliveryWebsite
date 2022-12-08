@@ -4,7 +4,7 @@ import URL from '/helpers/url.js'
 $('#form-log-in').submit(handleFormSubmit)
 
 $(document).ready(function () {
-    changeNavbar('logIn')
+    changeNavbar()
 })
 
 function handleFormSubmit(event) {
