@@ -1,4 +1,5 @@
 import changeNavbar from '/navbar/navbar_changing.js'
+import isValid from "./validationForRegistration.js";
 import URL from '/helpers/url.js'
 
 $(document).ready(function () {
@@ -9,8 +10,10 @@ $('#form-registration').submit(handleFormSubmit)
 
 function handleFormSubmit(event) {
     event.preventDefault()
-    const data = serializeForm()
-    sendData(data)
+    if (isValid()) {
+        const data = serializeForm()
+        sendData(data)
+    }
 }
 
 function serializeForm() {
@@ -51,7 +54,8 @@ function sendData(data) {
             if (response.ok) {
                 return response.json()
             } else {
-                $('#register+.wrong-email').text('Невозможно зарегистрироваться')
+                $('#register').toggleClass('is-invalid', true)
+                $('#register+.wrong-email').text('Невозможно зарегистрироваться, возможно email уже занят')
             }
         })
         .then ((json) => {

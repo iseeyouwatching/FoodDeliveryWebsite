@@ -13,14 +13,14 @@
               <h1>Авторизация</h1>
               <div class="mb-3">
                   <label for="user-email" class="form-label">Email</label>
-                  <input type="email" class="form-control form-required input-log-in" name="email" id="user-email">
+                  <input type="email" class="form-control form-required input-log-in" name="email" id="user-email" required>
               </div>
               <div class="mb-3">
                   <label for="user-password" class="form-label">Пароль</label>
-                  <input type="password" class="form-control form-required input-log-in" name="loginPassword" id="user-password">
+                  <input type="password" class="form-control form-required input-log-in" name="loginPassword" id="user-password" required>
+                  <div class="invalid-feedback"></div>
               </div>
               <button type="submit" class="btn btn-primary">Войти</button>
-              <div class="wrong-email-and-password mt-2 error"></div>
           </form>
       </div>
       <footer class="footer mt-auto py-3 bg-light border-top" id="food-delivery-footer"></footer>
@@ -29,6 +29,5 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
       <script type="module" src="/login/logIn.js"></script>
-      <script src="/helpers/validation.js"></script>
   </body>
 </html>
