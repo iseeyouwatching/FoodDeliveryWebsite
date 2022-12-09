@@ -11,7 +11,6 @@ function handleFormSubmit(event) {
     event.preventDefault()
     const data = serializeForm()
     sendData(data)
-    $('.input-log-in').removeClass('is-invalid')
 }
 
 function serializeForm() {
@@ -47,6 +46,5 @@ function sendData(data) {
 }
 
 function errorLogIn() {
-    $('.input-log-in').addClass('is-invalid')
     $('.wrong-email-and-password').text('Вы ввели неверные данные')
 }

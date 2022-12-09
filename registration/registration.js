@@ -49,10 +49,8 @@ function sendData(data) {
     })
         .then ((response) => {
             if (response.ok) {
-                $('#register').removeClass('is-invalid')
                 return response.json()
             } else {
-                $('#register').toggleClass('is-invalid', true)
                 $('#register+.wrong-email').text('Невозможно зарегистрироваться')
             }
         })
