@@ -17,7 +17,7 @@ function LoadDetails() {
             if (json['gender'] === "Female") {
                 $('.user-gender').val("женщина")
             }
-            if (json['gender'] === "Male") {
+            else {
                 $('.user-gender').val("мужчина")
             }
             $('.user-address').val(json['address'])
