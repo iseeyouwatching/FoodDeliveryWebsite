@@ -9,8 +9,25 @@ $(document).ready(function () {
 
 function handleFormSubmit(event) {
     event.preventDefault()
-    const data = serializeForm()
-    sendData(data)
+    if (isValidLogIn()) {
+        const data = serializeForm()
+        sendData(data)
+        $('.input-log-in').removeClass('is-invalid')
+    }
+}
+
+const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+function isEmailValid(value) {
+    return EMAIL_REGEXP.test(value)
+}
+
+function isValidLogIn() {
+    let email = $('#user-email').val()
+    if (!isEmailValid(email)) {
+        errorLogIn()
+        return false
+    }
+    return true
 }
 
 function serializeForm() {
@@ -46,5 +63,6 @@ function sendData(data) {
 }
 
 function errorLogIn() {
-    $('.wrong-email-and-password').text('Вы ввели неверные данные')
+    $('.input-log-in').addClass('is-invalid')
+    $('.invalid-feedback').text('Вы ввели неверные данные')
 }
