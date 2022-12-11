@@ -6,6 +6,7 @@ function isValid() {
     $('[required]').each(function (indexFormInput, formInput) {
         if ($(formInput).val() === '') {
             $(formInput).addClass('is-invalid')
+            $('.required-input').text('Данное поле является обазятельным')
             isValidForm = false
             return false
         } else {
