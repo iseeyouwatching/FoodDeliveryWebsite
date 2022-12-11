@@ -17,15 +17,6 @@ function isValid() {
         return false
     }
 
-    let phoneNumber = $('#userPhoneNumber').val()
-    if (!isPhoneNumberValid(phoneNumber)) {
-        $('#userPhoneNumber').toggleClass('is-invalid', true)
-        $('#userPhoneNumber+.invalid-feedback').text('Некорректный номер телефона')
-        return false
-    } else {
-        $('#userPhoneNumber').removeClass('is-invalid')
-    }
-
     let birthDate = $('.user-birthdate')
     if (Date.parse(`${birthDate.val()}T00:00:00`) > Date.now()) {
         $('.user-birthdate').toggleClass('is-invalid', true)
@@ -33,6 +24,15 @@ function isValid() {
         return false
     } else {
         $('.user-birthdate').removeClass('is-invalid')
+    }
+
+    let phoneNumber = $('#userPhoneNumber').val()
+    if (!isPhoneNumberValid(phoneNumber)) {
+        $('#userPhoneNumber').toggleClass('is-invalid', true)
+        $('#userPhoneNumber+.invalid-feedback').text('Некорректный номер телефона')
+        return false
+    } else {
+        $('#userPhoneNumber').removeClass('is-invalid')
     }
 
     return true
