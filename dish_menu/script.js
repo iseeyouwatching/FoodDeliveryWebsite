@@ -34,10 +34,8 @@ function renderDishes(pageNumber) {
                 renderCard(dishes[i]);
             }
 
-            //TODO: сделать пагинацию
         })
         .catch(statusCode => {
-            //TODO: что-то предпринять
         })
 }
 
