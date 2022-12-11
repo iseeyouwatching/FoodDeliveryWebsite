@@ -5,14 +5,6 @@ const ONE_DIGIT_REGEXP = /(?=.*?[0-9])/
 const PHONE_NUMBER_REXEGXP = /^(\+7|7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/
 
 function isValid() {
-    let email = $('#userEmail').val()
-    if (!isEmailValid(email)) {
-        $('#userEmail').toggleClass('is-invalid', true)
-        $('#userEmail+.invalid-feedback').text('Некорректный email')
-        return false
-    } else {
-        $('#userEmail').removeClass('is-invalid')
-    }
 
     let phoneNumber = $('#userPhoneNumber').val()
     if (!isPhoneNumberValid(phoneNumber)) {
@@ -27,8 +19,18 @@ function isValid() {
     if (Date.parse(`${birthDate.val()}T00:00:00`) > Date.now()) {
         $('#userBirthDate').toggleClass('is-invalid', true)
         $('#userBirthDate+.invalid-feedback').text('Некорректная дата рождения')
+        return false
     } else {
         $('#userBirthDate').removeClass('is-invalid')
+    }
+
+    let email = $('#userEmail').val()
+    if (!isEmailValid(email)) {
+        $('#userEmail').toggleClass('is-invalid', true)
+        $('#userEmail+.invalid-feedback').text('Некорректный email')
+        return false
+    } else {
+        $('#userEmail').removeClass('is-invalid')
     }
 
     let password = $('#userPassword').val()
