@@ -52,6 +52,10 @@ function renderCard(dish) {
     dishBlock.find('.category').text(`Категория блюда - ${convertCategoryEngToRus(dish['category'])}`);
     dishBlock.find('img').prop('src', dish['image']);
 
+    dishBlock.on('click', function () {
+        location.href = '/item/index.html#' + dish['id']
+    })
+
     dishBlock.removeClass('d-none');
     $('#card_container').append(dishBlock);
 
