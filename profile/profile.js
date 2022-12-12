@@ -4,7 +4,6 @@ import URL from '/helpers/url.js'
 import isValid from "/profile/validationForUpdate.js";
 
 $(document).ready(function () {
-
     fetch(`${URL}/api/account/profile`, {
         headers: new Headers({
             'Authorization': 'Bearer ' + localStorage.getItem('token')
