@@ -66,11 +66,14 @@
                  class="g-4 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4">
 
             </div>
-            <div id="card_template" class="col d-none" role="button">
+            <div id="card_template" class="col d-none" >
                 <div class="card h-100">
-                    <img src=""
-                         alt="Фотография блюда"
-                         class="card-img-top">
+                    <div class="ratio" style="--bs-aspect-ratio: 65%;">
+                        <img src=""
+                             alt="Фотография блюда"
+                             class="card-img-top"
+                             role="button" style="object-fit: cover;">
+                    </div>
                     <div class="card-body">
                         <h5 class="title card-title text-uppercase mb-1"></h5>
                         <p class="category mb-0 card-text"></p>
@@ -95,7 +98,7 @@
                                 </div>
                             </div>
                             <div class="bd-highlight">
-                                <a href="#" class="btn btn-primary">В корзину</a>
+                                <a href="#" class="btn btn-primary btn-basket">В корзину</a>
                             </div>
                         </div>
 
