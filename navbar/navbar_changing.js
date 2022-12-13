@@ -4,7 +4,6 @@ import overallAmount from "../basket/overall_amount.js";
 function changeNavbar() {
     $("#food-delivery-navbar").load("/navbar/navbar.html");
     $("#food-delivery-footer").load("/footer/footer.html");
-    overallAmount()
     fetch(`${URL}/api/account/profile`, {
         headers: new Headers({
             'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -19,6 +18,7 @@ function changeNavbar() {
             }
         })
         .then((json) => {
+            overallAmount()
             $('.unauthorized-section').addClass('d-none')
             $('.authorized-section').removeClass('d-none')
             $('.email a').text(`${json['email']}`);

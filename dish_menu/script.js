@@ -49,10 +49,16 @@ function renderCard(dish) {
     dishBlock.find('.price').text(`Цена - ${dish['price']}`);
     dishBlock.find('.category').text(`Категория блюда - ${convertCategoryEngToRus(dish['category'])}`);
     dishBlock.find('img').prop('src', dish['image']);
+    dishBlock.find("img").attr("dish_id", dish['id']);
 
-    dishBlock.on('click', function () {
-        location.href = '/item/index.html#' + dish['id']
+    dishBlock.find('img').on('click', function () {
+        let id = $(this).attr("dish_id");
+        location.href = '/item/index.html#' + id
     })
+
+    if(localStorage.getItem('token') == null){
+        dishBlock.find('.btn-basket').addClass('d-none')
+    }
 
     dishBlock.removeClass('d-none');
     $('#card_container').append(dishBlock);
