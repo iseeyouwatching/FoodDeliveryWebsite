@@ -5,7 +5,7 @@ import {menuStarRatingOptions} from "/helpers/config.js";
 import URL from "../helpers/url.js";
 
 $(document).ready(() => {
-    changeNavbar()
+    changeNavbar('menu')
     $('.selectpicker').selectpicker();
     $('#btn-execute').on('click', handleForSubmit);
     handleForSubmit();

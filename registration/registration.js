@@ -3,7 +3,7 @@ import isValid from "./validationForRegistration.js";
 import URL from '/helpers/url.js'
 
 $(document).ready(function () {
-    changeNavbar()
+    changeNavbar("registration")
 })
 
 $('#form-registration').submit(handleFormSubmit)

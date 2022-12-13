@@ -11,7 +11,7 @@ $(document).ready(function () {
     })
         .then((response) => {
             if (response.ok) {
-                changeNavbar()
+                changeNavbar('profile')
                 LoadDetails()
             }
             else {
