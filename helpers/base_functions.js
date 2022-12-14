@@ -11,3 +11,9 @@ export function getDeliveryTime(dateTime){
     let time = dateTime.substr(11,5);
     return `${date} ${time}`;
 }
+
+export function getDeliveryTime2(dateTime){
+    let date = dateConvert(dateTime.substr(0, 10));
+    let time = dateTime.substr(11,5);
+    return `${date} ${time}`;
+}

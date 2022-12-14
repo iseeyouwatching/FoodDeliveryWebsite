@@ -8,7 +8,7 @@
   </head>
     <body class="d-flex flex-column h-100">
     <div id="food-delivery-navbar"></div>
-    <div id="content_container" class="p-3 container shadow">
+    <div id="content_container" class="p-3 container shadow mb-3">
       <div id="note" class="border rounded-1 p-2 d-none">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6 col">
@@ -22,14 +22,19 @@
         </div>
       </div>
       <div class="h1 mb-3">Последние заказы</div>
+      <div class="container ps-0 pe-0" id="history_card">
+        <ul id="history-container" class="list-group">
+
+        </ul>
+      </div>
       <div class="container ps-0 pe-0">
         <li class="list-group-item d-none" id="order_history_card">
           <div class="row">
             <div class="col">
               <div class="card-body">
-                <a href="#" class="link-dark"><strong>Заказ от <span class="order_data"></span></strong></a>
+                <a href="#" class="link-dark order-time"><strong>Заказ от <span class="order_data"></span></strong></a>
                 <p class="dish-price-order mb-1">Статус заказа - <span class="order_status"></span></p>
-                <p class="amount-of-dish mb-0">Доставлен: <span class="delivery_data"></span></p>
+                <p class="amount-of-dish mb-0"><span class="delivery_text"></span> <span class="delivery_data"></span></p>
               </div>
             </div>
 
@@ -50,8 +55,7 @@
             </div>
           </div>
         </li>
-        <ul class="list-group">
-        </ul>
+
       </div>
     </div>
     <footer class="footer mt-auto py-3 bg-light border-top" id="food-delivery-footer"></footer>
