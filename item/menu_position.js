@@ -39,3 +39,4 @@ function loadDishDetails(id) {
 
         })
 }
+
