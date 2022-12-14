@@ -1,5 +1,5 @@
 import URL from '../helpers/url.js'
-import overallAmount from "../basket/overall_amount.js";
+import overallAmount from "../cart/overall_amount.js";
 
 function changeNavbar(activePage) {
     $("#food-delivery-navbar").load("/navbar/navbar.html");

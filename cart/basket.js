@@ -9,7 +9,7 @@ $(document).ready(function () {
     })
         .then((response) => {
             if (response.ok) {
-                changeNavbar("basket")
+                changeNavbar("cart")
                 loadBasketDetails()
             }
             else {
