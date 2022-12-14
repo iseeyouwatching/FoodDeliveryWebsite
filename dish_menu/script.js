@@ -54,8 +54,11 @@ function renderCard(dish) {
     dishBlock.find(".button-plus-main").attr("id", dish['id']);
     dishBlock.find('.price').text(`Цена - ${dish['price']}`);
     dishBlock.find('.category').text(`Категория блюда - ${convertCategoryEngToRus(dish['category'])}`);
-    dishBlock.find('img').prop('src', dish['image']);
-    dishBlock.find("img").attr("dish_id", dish['id']);
+    dishBlock.find('.card-img-top').prop('src', dish['image']);
+    dishBlock.find(".card-img-top").attr("dish_id", dish['id']);
+    if (dish['vegetarian']){
+        dishBlock.find(".img-vegetarian").removeClass("d-none");
+    }
 
     dishBlock.find('img').on('click', function () {
         let id = $(this).attr("dish_id");
