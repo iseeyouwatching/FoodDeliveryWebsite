@@ -2,15 +2,16 @@ import URL from "../helpers/url.js";
 import {convertSortRusToEng} from "./converter.js";
 import {convertCategoriesRusToEng} from "./converter.js";
 
-export default function get_request_string(page) {
+export  function getRequestString(page) {
     let data = serializeForm();
+
+    localStorage.setItem('params', JSON.stringify(data));
 
     let categoriesStr = '';
 
     for (let i = 0; i < data.categories.length; i++) {
-        console.log(data.categories);
         if (data.categories[i] !== undefined) {
-            if (i > 0) {
+            if (i > 0 && data.categories[0] !== null) {
                 categoriesStr += '&';
             }
             categoriesStr += `categories=${data.categories[i]}`;
@@ -28,6 +29,7 @@ export default function get_request_string(page) {
 
     return requestStr;
 }
+
 
 function serializeForm() {
     let sort = serializeSort();

@@ -1,5 +1,5 @@
 import changeNavbar from '../navbar/navbar_changing.js'
-import get_request_string from '/dish_menu/get_request_string.js';
+import {getRequestString} from "./get_request_string.js";
 import {convertCategoryEngToRus} from "./converter.js";
 import {menuStarRatingOptions} from "/helpers/config.js";
 import URL from "../helpers/url.js";
@@ -8,18 +8,105 @@ $(document).ready(() => {
     changeNavbar('menu')
     $('.selectpicker').selectpicker();
     $('#btn-execute').on('click', handleForSubmit);
-    handleForSubmit();
+    firstRender();
 });
 
-function handleForSubmit(event) {
-    $('#card_container').empty();
-    renderDishes(1);
+function firstRender() {
+    let isFirstPage = false
+
+    let currentPage = localStorage.getItem('currentPage')
+    if (window.history.length < 2 || currentPage === null) {
+        currentPage = 1;
+        localStorage.setItem('currentPage', currentPage.toString())
+        localStorage.removeItem('params')
+        isFirstPage = true
+    }
+
+    let params = JSON.parse(localStorage.getItem('params'))
+
+    if (params !== null) {
+        renderParams(params);
+    }
+
+    handleForSubmit(isFirstPage);
 }
 
-async function renderDishes(pageNumber) {
-    let requestString = get_request_string(pageNumber);
+function renderParams(params) {
+    let categories = params.categories;
+    if (categories[0] !== null && categories[0] !== undefined) {
+        for (let i = 0; i < categories.length; i++) {
+            $('#category-col').find('.btn').click()
+            switch (categories[i]) {
+                case 'Wok':
+                    $('#bs-select-1-0').click();
+                    break;
+                case 'Pizza':
+                    $('#bs-select-1-1').click();
+                    break;
+                case 'Soup':
+                    $('#bs-select-1-2').click();
+                    break;
+                case 'Dessert':
+                    $('#bs-select-1-3').click();
+                    break;
+                case 'Drink':
+                    $('#bs-select-1-4').click();
+                    break;
+            }
+            $('#category-col').find('.btn').click()
+        }
+    }
 
-    await fetch(requestString)
+    $('#sort_col').find('.dropdown-toggle').click();
+    switch (params.sort) {
+        case 'NameAsc':
+            $('#bs-select-2-0').click();
+            break;
+        case 'NameDesc':
+            $('#bs-select-2-1').click();
+            break;
+        case 'PriceAsc':
+            $('#bs-select-2-2').click();
+            break;
+        case 'PriceDesc':
+            $('#bs-select-2-3').click();
+            break;
+        case 'RatingAsc':
+            $('#bs-select-2-4').click();
+            break;
+        case 'RatingDesc':
+            $('#bs-select-2-5').click();
+            break;
+    }
+    $('#sort_col').find('.dropdown-toggle').click();
+
+
+    if (params.isVegan === true){
+        $('#vegan_switch').click();
+    }
+}
+
+function handleForSubmit(isFirstPage) {
+    $('#card_container').empty();
+    $('#pagination-buttons').empty();
+
+    localStorage.removeItem('params');
+
+    let currentPage = localStorage.getItem('currentPage');
+
+    if (currentPage === null) {
+        currentPage = 1;
+        localStorage.setItem('currentPage', currentPage.toString());
+    }
+
+    if (isFirstPage === true){
+        currentPage = 1;
+    }
+
+    console.log()
+    let reqStr = getRequestString(currentPage);
+    console.log(reqStr);
+    fetch(reqStr)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -28,16 +115,22 @@ async function renderDishes(pageNumber) {
             }
         })
         .then(json => {
-            let dishes = json['dishes'];
-            let pagination = json['pagination'];
-
-            for (let i = 0; i < dishes.length; i++) {
-                renderCard(dishes[i]);
-            }
-
+            localStorage.setItem('currentPage', json['pagination']['current']);
+            localStorage.setItem('pageCount', json['pagination']['count']);
+            renderDishes(json['dishes']);
+            renderPaginationButtons(json['pagination']);
         })
-        .catch(statusCode => {
+        .catch(error => {
+            localStorage.setItem('currentPage', '1');
+            handleForSubmit(false);
         })
+
+}
+
+function renderDishes(dishes) {
+    for (let dish of dishes) {
+        renderCard(dish);
+    }
     inBasketCheck()
     changeMainAmount()
 }
@@ -75,6 +168,69 @@ function renderCard(dish) {
     let options = menuStarRatingOptions(dish['rating']);
 
     $(`#${dish['id']}`).find('.rating').starRating(options);
+}
+
+function renderPaginationButtons(pagination) {
+    renderNumberedBtn(pagination);
+    renderArrowBtn();
+}
+
+function renderNumberedBtn(pagination) {
+    if (Number(pagination['current']) > 1) {
+        //рисуем предыдущую
+        let prevBtn = $('#default-btn').clone();
+        prevBtn.text(Number(pagination['current']) - 1);
+        $('#pagination-buttons').append(prevBtn);
+        prevBtn.on('click', () => {
+            localStorage.setItem('currentPage', prevBtn.text());
+            handleForSubmit();
+        })
+    }
+
+    //рисуем текущую страницу
+    let currentBtn = $('#active-btn').clone();
+    currentBtn.text(pagination['current']);
+    $('#pagination-buttons').append(currentBtn);
+
+    if (Number(pagination['current']) < Number(pagination['count'])) {
+        //рисуем следующую
+        let nextBtn = $('#default-btn').clone();
+        nextBtn.text(Number(Number(pagination['current']) + 1));
+        $('#pagination-buttons').append(nextBtn);
+
+        nextBtn.on('click', () => {
+            localStorage.setItem('currentPage', nextBtn.text());
+            handleForSubmit();
+        })
+    }
+}
+
+function renderArrowBtn() {
+    let leftBtn = $('#left-btn').clone();
+    let rightBtn = $('#right-btn').clone();
+
+    $('#pagination-buttons').append(rightBtn);
+    $('#pagination-buttons').prepend(leftBtn);
+
+    leftBtn.on('click', () => {
+        let currentPage = Number(localStorage.getItem('currentPage'));
+
+        if (currentPage > 1) {
+            localStorage.setItem('currentPage', (currentPage - 1).toString());
+            handleForSubmit();
+        }
+    });
+
+    rightBtn.on('click', () => {
+        let currentPage = Number(localStorage.getItem('currentPage'));
+
+        if (currentPage < localStorage.getItem('pageCount')) {
+            localStorage.setItem('currentPage', (currentPage + 1).toString());
+            handleForSubmit();
+        }
+
+    });
+
 }
 
 async function inBasketCheck()

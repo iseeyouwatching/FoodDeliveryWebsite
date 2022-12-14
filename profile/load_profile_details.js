@@ -13,7 +13,12 @@ function LoadDetails() {
             $('.form-edit-profile').attr('id', json['id'])
             $('.user-fullname').val(json['fullName'])
             $('.user-email').val(json['email'])
-            $('.user-birthdate').val(json['birthDate'].substr(0, 10))
+            if (json['birthDate'] === null) {
+                $('.user-birthdate').val(null)
+            }
+            else {
+                $('.user-birthdate').val(json['birthDate'].substr(0, 10))
+            }
             if (json['gender'] === "Female") {
                 $('.user-gender').val("женщина")
             }
