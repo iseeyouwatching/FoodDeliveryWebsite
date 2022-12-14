@@ -60,7 +60,7 @@ function renderCard(dish) {
         dishBlock.find(".img-vegetarian").removeClass("d-none");
     }
 
-    dishBlock.find('img').on('click', function () {
+    dishBlock.find('.card-img-top').on('click', function () {
         let id = $(this).attr("dish_id");
         location.href = '/item/index.html#' + id
     })
