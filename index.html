@@ -1,17 +1,132 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Food delivery</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <link rel="import" href="/navbar/navbar.html">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script type="module" src="/downloadNavbar.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Меню - Delivery.Кушац</title>
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="/libs/star_rating/star-rating-svg.css">
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         <div id="food-delivery-navbar"></div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <div id="content_container" class="p-3 container shadow">
+
+            <div class="container rounded-1 border border-1 mb-4">
+                <div class="py-3">
+                    <div class="g-4 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4">
+                        <div id="category-col" class="col">
+                            <select class="selectpicker border" multiple title="Выберите категорию" data-width="100%">
+                                <option>WOK</option>
+                                <option>Пицца</option>
+                                <option>Суп</option>
+                                <option>Десерт</option>
+                                <option>Напитки</option>
+                            </select>
+                        </div>
+
+                        <div id="sort_col" class="col">
+                            <div class="w-100 me-auto bd-highlight">
+                                <select class="selectpicker show-tick border" data-width="100%">
+                                    <option selected>А-Я</option>
+                                    <option>Я-А</option>
+                                    <option>По возрастания цены</option>
+                                    <option>По убыванию цены</option>
+                                    <option>По возрастания рейтинга</option>
+                                    <option>По убыванию рейтинга</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="h-100 w-100 me-auto d-flex bd-highlight align-items-center">
+                                <div class="w-100 me-auto bd-highlight form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="vegan_switch">
+                                    <label class="form-check-label" for="vegan_switch">Показать только вегетарианские</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-end">
+                                <a href="#" id="btn-execute" class="btn btn-primary">Применить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="card_container"
+                 class="g-4 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4">
+            </div>
+
+            <div id="pagination-buttons" class="mt-3 btn-group mr-2 border" role="group"></div>
+
+            <div class="d-none">
+                <button id="left-btn" type="button" class="btn text-primary">&laquo</button>
+                <button id="default-btn" type="button" class="btn text-primary"></button>
+                <button id="active-btn" type="button" class="btn btn-primary"></button>
+                <button id="right-btn" type="button" class="btn text-primary">&raquo</button>
+            </div>
+
+            <div id="card_template" class="col d-none" >
+                <div class="card h-100">
+                        <div class="ratio" style="--bs-aspect-ratio: 65%;">
+                        <img src=""
+                             alt="Фотография блюда"
+                             class="card-img-top "
+                             role="button" style="object-fit: cover;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3196/3196633.png" class="border-0 d-none img-vegetarian ms-auto mt-auto pe-2 pb-2" style="width: 40px; height: 40px; position: absolute; right: 0px; bottom: 0px;">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="title card-title text-uppercase mb-1"></h5>
+                        <p class="category mb-0 card-text"></p>
+
+                        <div class="container rounded border border-1">
+
+                            <div class="star-rating pb-2">
+                                <div class="rating jq-stars d-flex justify-content-center"></div>
+                            </div>
+                        </div>
+
+                        <p class="description card-text"></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex bd-highlight align-items-center">
+                            <div class="price me-auto bd-highlight"></div>
+                            <div class="bd-highlight d-none change-amount">
+                                <div class="btn-group btn-group-sm me-2 border border-1 d-none change-amount" role="group">
+                                    <button type="button" class="btn btn-light button-minus-main">-</button>
+                                    <span class="item-count-main mx-auto mt-auto mb-auto ps-2 pe-2"></span>
+                                    <button type="button" class="btn btn-light button-plus-main">+</button>
+                                </div>
+                            </div>
+                            <div class="bd-highlight">
+                                <a href="#" class="btn btn-primary btn-basket">В корзину</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer mt-auto py-3 bg-light border-top" id="food-delivery-footer"></footer>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+
+        <script src="/libs/star_rating/jquery.star-rating-svg.js"></script>
+        <script type="module" src="/dish_menu/script.js"></script>
     </body>
 </html>

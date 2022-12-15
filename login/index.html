@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Авторизация - Delivery.Кушац</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+      <link rel="stylesheet" href="/styles/errors.css">
+  </head>
+  <body class="d-flex flex-column h-100">
+      <div id="food-delivery-navbar"></div>
+      <div class="container">
+          <form class="p-3 container shadow" id="form-log-in" method="POST">
+              <h1>Авторизация</h1>
+              <div class="mb-3">
+                  <label for="user-email" class="form-label">Email</label>
+                  <input type="email" class="form-control form-required input-log-in" name="email" id="user-email" required>
+              </div>
+              <div class="mb-3">
+                  <label for="user-password" class="form-label">Пароль</label>
+                  <input type="password" class="form-control form-required input-log-in" name="loginPassword" id="user-password" required>
+                  <div class="invalid-feedback"></div>
+              </div>
+              <button type="submit" class="btn btn-primary">Войти</button>
+          </form>
+      </div>
+      <footer class="footer mt-auto py-3 bg-light border-top" id="food-delivery-footer"></footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+      <script type="module" src="/login/logIn.js"></script>
+  </body>
+</html>
